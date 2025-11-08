@@ -10,7 +10,7 @@ import { IoMdLogIn } from "react-icons/io";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const { signIn, setUser,} = use(AuthContext);
+  const { signIn, setUser,signInGoogle} = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   // const [email, setEmail] = useState("");
@@ -31,10 +31,22 @@ const Login = () => {
         toast.warn(err.message);
       });
   };
-
+ const handleGoogleLogin = () => {
+    signInGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Successfully Login");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error("Google Login Error:", err);
+        toast.warn(err.message);
+      });
+  };
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <title>ToyTopia-Login</title>
+      <title>studyMate-Login</title>
       <Container>
         <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-5 lg:gap-20 p-6 lg:p-10 ">
           <div className="lg:w-1/2 shadow max-w-md backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-8">
@@ -102,12 +114,12 @@ const Login = () => {
               </h1>
             </div>
             {/* Google */}
-            <div className="flex items-center justify-center gap-3">
-              <h3> login with</h3>
+            <div className="flex items-center justify-center gap-2">
+              <h3 className="text-gray-500"> login with</h3>
               <button
               type="button"
-              // onClick={handleGoogleLogin}
-              className=" hover:scale-120 duration-300 transition-transform "
+              onClick={handleGoogleLogin}
+              className=" hover:scale-120 hover:bg-amber-500 px-2 py-1 rounded duration-300 transition-transform "
             >
               <svg
                 aria-label="Google logo"
