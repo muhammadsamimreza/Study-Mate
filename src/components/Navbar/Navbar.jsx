@@ -1,5 +1,6 @@
-import React, { use, } from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import "./Navbar.css"
 import logo from "/logo.jpg";
 import Container from "../Container/Container";
 import { AuthContext } from "../../Provider/AuthContext";
@@ -11,14 +12,13 @@ import { FaPersonArrowDownToLine } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-// const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+  // const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
 
   // useEffect(() => {
   //   const html = document.querySelector('html')
   //    html.setAttribute("data-theme", theme)
   //    localStorage.setItem("theme", theme)
   // }, [theme])
-
 
   // const handleTheme = (checked) => {
   //   setTheme(checked ? "dark": "light")
@@ -81,56 +81,101 @@ const Navbar = () => {
                   />{" "}
                 </svg>
               </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              ></ul>
+              {user ? (
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <NavLink to="/">
+                      {" "}
+                      <FaHome></FaHome> Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/find-partner">
+                      <RiTeamFill />
+                      Find Partners
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/create-partner">
+                      <FaPersonArrowDownToLine />
+                      Create Partner Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink>
+                      <BsPersonFillAdd />
+                      My Connections
+                    </NavLink>
+                  </li>
+                </ul>
+              ) : (
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <NavLink to="/">
+                      <FaHome></FaHome>
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/find-partner">
+                      <RiTeamFill />
+                      Find Partners
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
             </div>
-            <div className="flex items-center">
-              <img className="w-10" src={logo} alt="" />
-              <Link to="/" className="text-xl font-bold">
+            <div className="flex items-center gap-5">
+              <img className="w-8" src={logo} alt="" />
+              <Link to="/" className="text-xl font-bold text-amber-600">
                 STUDY MATE
               </Link>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
             {user ? (
-              <ul className="menu menu-horizontal px-1">
+              <ul className="menu gap-2 menu-horizontal px-1">
                 <li>
-                  <NavLink>
+                  <NavLink to="/">
                     {" "}
                     <FaHome></FaHome> Home
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>
+                  <NavLink to="/find-partner">
                     <RiTeamFill />
                     Find Partners
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>
+                  <NavLink to="/create-partner">
                     <FaPersonArrowDownToLine />
                     Create Partner Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>
+                  <NavLink to="/my-connection">
                     <BsPersonFillAdd />
                     My Connections
                   </NavLink>
                 </li>
               </ul>
             ) : (
-              <ul className="menu menu-horizontal px-1">
+              <ul className="menu gap-2 menu-horizontal px-1">
                 <li>
-                  <NavLink>
+                  <NavLink to="/">
                     <FaHome></FaHome>
                     Home
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>
+                  <NavLink to="/find-partner">
                     <RiTeamFill />
                     Find Partners
                   </NavLink>

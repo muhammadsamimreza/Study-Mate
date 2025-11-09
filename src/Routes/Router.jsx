@@ -7,6 +7,9 @@ import Register from "../Auth/Register";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import PrivateRoute from "../Provider/PrivateRoute";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import FindPartner from "../components/FindPartner/FindPartner";
+import PartnerProfile from "../pages/PartnerProfile/PartnerProfile";
+import MyConnection from "../pages/MyConnection/MyConnection";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,18 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>
+        },
+        {
+          path: "/find-partner",
+          element: <FindPartner></FindPartner>
+        },
+        {
+          path: "/create-partner",
+          element: <PartnerProfile></PartnerProfile>
+        },
+        {
+          path:"/my-connection",
+          element: <MyConnection></MyConnection>
         },
         {
           path: "/login", 
