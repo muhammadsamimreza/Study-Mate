@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import backgroundImg1 from "../../assets/bg.jpg"
+
 
 const videos = [
   "https://www.pexels.com/download/video/3209298/",
@@ -24,6 +26,8 @@ const HeroSection = () => {
 
   return (
     <>
+    <div className="">
+      <img className="relative w-full h-[500px] object-cover" src={backgroundImg1} alt="" />
     <div className="absolute w-full flex top-[66px] left-0 justify-center ">
       <div className="max-w-6xl mx-auto">
         <div className="relative w-full overflow-hidden bg-black rounded-2xl shadow">
@@ -39,7 +43,7 @@ const HeroSection = () => {
                   loop
                   muted
                   playsInline
-                  className="w-full h-[60vh] object-cover brightness-90"
+                  className="w-full h-[70vh] object-cover brightness-90"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>
@@ -75,7 +79,7 @@ const HeroSection = () => {
         </div>
       </div>
     </div>
-    <div className="mb-[500px]"></div>
+     </div>
     </>
   );
 };

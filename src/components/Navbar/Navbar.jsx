@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" shadow">
+    <div className="bg-[#F9FAFB] text-[#111827] shadow z-20 sticky top-0">
       <Container>
         <div className="navbar">
           <div className="navbar-start">
