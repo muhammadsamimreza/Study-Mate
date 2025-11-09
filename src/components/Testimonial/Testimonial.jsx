@@ -28,12 +28,12 @@ const Testimonials = () => {
     <section className="py-16 bg-white">
       <Container>
         <div className="">
-          <h2 className="text-3xl font-bold text-center mb-12">Testimonials</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-amber-500">Testimonials</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition duration-300"
+                className="p-6 rounded-xl shadow hover:shadow-lg bg-[#baeff88d] hover:bg-linear-to-r from-[#70e1f5b9] to-[#ffd194bd] hover:scale-102 hover:-translate-y-2 transition duration-300"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(review.rating)].map((_, i) => (
