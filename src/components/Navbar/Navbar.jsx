@@ -9,36 +9,36 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
 
- const handleLogOut = () => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You will be logged out from your account!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, log out!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      logOut()
-        .then(() => {
-          Swal.fire({
-            title: "Logged out!",
-            text: "You have been successfully logged out.",
-            icon: "success"
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out from your account!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire({
+              title: "Logged out!",
+              text: "You have been successfully logged out.",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong during logout.",
+              icon: "error",
+            });
+            console.error(error);
           });
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "Error!",
-            text: "Something went wrong during logout.",
-            icon: "error"
-          });
-          console.error(error);
-        });
-    }
-  });
-};
+      }
+    });
+  };
 
   return (
     <div className="bg-amber-100">
@@ -80,14 +80,31 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <NavLink>Home</NavLink>
-              </li>
-              <li>
-                <NavLink>Find Partners</NavLink>
-              </li>
-            </ul>
+            {user ? (
+              <ul className="menu menu-horizontal px-1">
+                <li>
+                  <NavLink>Home</NavLink>
+                </li>
+                <li>
+                  <NavLink>Find Partners</NavLink>
+                </li>
+                <li>
+                  <NavLink>Create Partner Profile</NavLink>
+                </li>
+                <li>
+                  <NavLink>My Connections</NavLink>
+                </li>
+              </ul>
+            ) : (
+              <ul className="menu menu-horizontal px-1">
+                <li>
+                  <NavLink>Home</NavLink>
+                </li>
+                <li>
+                  <NavLink>Find Partners</NavLink>
+                </li>
+              </ul>
+            )}
           </div>
           <div className="navbar-end gap-3">
             {/* <div>{user && <h1> {user.displayName} </h1>}</div> */}
@@ -110,40 +127,49 @@ const Navbar = () => {
                         <Link to="my-profile"> My Profile</Link>
                       </li>
                       <li>
-                        <button
-                          onClick={handleLogOut}
-                        >
-                          Logout
-                        </button>
+                        <button onClick={handleLogOut}>Logout</button>
                       </li>
                     </ul>
                   </div>
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-gray-200 flex justify-center items-center text-gray-500">
-                    <FaRegUser size={20} />
+                  <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="">
+                      <div className="w-10 h-10 rounded-full bg-gray-200 flex justify-center items-center text-gray-500">
+                        <FaRegUser size={20} />
+                      </div>
+                    </div>
+                    <ul
+                      tabIndex="-1"
+                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                    >
+                      <li>
+                        <Link to="my-profile"> My Profile</Link>
+                      </li>
+                      <li>
+                        <button onClick={handleLogOut}>Logout</button>
+                      </li>
+                    </ul>
                   </div>
                 )
               ) : (
                 <div className="flex gap-2">
-                <Link
-                  to="/login"
-                  className="btn bg-amber-500 hover:bg-amber-600 text-white"
-                >
-                  {" "}
-                  Login{" "}
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn bg-amber-500 hover:bg-amber-600 text-white"
-                >
-                  {" "}
-                  Register{" "}
-                </Link>
-              
-            </div>
+                  <Link
+                    to="/login"
+                    className="btn bg-amber-500 hover:bg-amber-600 text-white"
+                  >
+                    {" "}
+                    Login{" "}
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="btn bg-amber-500 hover:bg-amber-600 text-white"
+                  >
+                    {" "}
+                    Register{" "}
+                  </Link>
+                </div>
               )}
             </div>
-            
           </div>
         </div>
       </Container>
