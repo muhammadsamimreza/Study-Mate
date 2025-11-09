@@ -10,10 +10,10 @@ import { IoMdLogIn } from "react-icons/io";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const { signIn, setUser,signInGoogle} = use(AuthContext);
+  const { signIn, setUser,signInGoogle,setTempEmail} = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  // const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
@@ -44,6 +44,11 @@ const Login = () => {
         toast.warn(err.message);
       });
   };
+   const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    setTempEmail(value); 
+  };
   return (
     <div className="min-h-screen flex items-center justify-center">
       <title>studyMate-Login</title>
@@ -61,8 +66,8 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  // value={email}
-                  // onChange={handleEmailChange}
+                  value={email}
+                  onChange={handleEmailChange}
                   placeholder="studymate@email.com"
                   className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
