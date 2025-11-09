@@ -1,14 +1,28 @@
-import React, { use } from "react";
+import React, { use, } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "/logo.jpg";
 import Container from "../Container/Container";
 import { AuthContext } from "../../Provider/AuthContext";
-import { FaRegUser, FaUserAltSlash } from "react-icons/fa";
+import { FaRegUser, FaHome } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { RiTeamFill } from "react-icons/ri";
+import { BsPersonFillAdd } from "react-icons/bs";
+import { FaPersonArrowDownToLine } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
+// const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
 
+  // useEffect(() => {
+  //   const html = document.querySelector('html')
+  //    html.setAttribute("data-theme", theme)
+  //    localStorage.setItem("theme", theme)
+  // }, [theme])
+
+
+  // const handleTheme = (checked) => {
+  //   setTheme(checked ? "dark": "light")
+  // }
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -41,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-amber-100">
+    <div className=" shadow">
       <Container>
         <div className="navbar">
           <div className="navbar-start">
@@ -83,25 +97,43 @@ const Navbar = () => {
             {user ? (
               <ul className="menu menu-horizontal px-1">
                 <li>
-                  <NavLink>Home</NavLink>
+                  <NavLink>
+                    {" "}
+                    <FaHome></FaHome> Home
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink>Find Partners</NavLink>
+                  <NavLink>
+                    <RiTeamFill />
+                    Find Partners
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink>Create Partner Profile</NavLink>
+                  <NavLink>
+                    <FaPersonArrowDownToLine />
+                    Create Partner Profile
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink>My Connections</NavLink>
+                  <NavLink>
+                    <BsPersonFillAdd />
+                    My Connections
+                  </NavLink>
                 </li>
               </ul>
             ) : (
               <ul className="menu menu-horizontal px-1">
                 <li>
-                  <NavLink>Home</NavLink>
+                  <NavLink>
+                    <FaHome></FaHome>
+                    Home
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink>Find Partners</NavLink>
+                  <NavLink>
+                    <RiTeamFill />
+                    Find Partners
+                  </NavLink>
                 </li>
               </ul>
             )}
@@ -145,6 +177,14 @@ const Navbar = () => {
                       <li>
                         <Link to="my-profile"> My Profile</Link>
                       </li>
+                      {/* <input
+                        onChange={(e) => handleTheme(e.target.checked)}
+                        type="checkbox"
+                        defaultChecked={
+                          localStorage.getItem("theme") === "dark"
+                        }
+                        className="toggle"
+                      /> */}
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>
