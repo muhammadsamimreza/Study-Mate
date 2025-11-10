@@ -105,7 +105,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink>
+                    <NavLink to="/my-connection">
                       <BsPersonFillAdd />
                       My Connections
                     </NavLink>

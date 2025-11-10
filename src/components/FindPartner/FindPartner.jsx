@@ -38,7 +38,7 @@ const FindPartner = () => {
   );
 
   return (
-    <div className="bg-[#f9f9ff]">
+    <div className="bg-[#f9f9ff] pb-10">
       <Container>
         <div>
           <div>
