@@ -4,7 +4,7 @@ import logo from "/logo.jpg";
 const PartnerCard = ({ partner }) => {
   return (
     <div
-      className="bg-linear-to-b from-[#70e1f5b9] via-amber-100 to-[#70e1f5b9] hover:bg-linear-to-r from-[#70e1f5b9] via-amber-100 to-[#70e1f5b9] shadow-lg rounded-2xl p-6 flex flex-col items-center text-center 
+      className="bg-linear-to-b from-[#70e1f5b9] via-amber-100 to-[#70e1f5b9] hover:bg-linear-to-r  shadow-lg rounded-2xl p-6 flex flex-col items-center text-center 
       border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out"
     >
       {/* Profile Image */}

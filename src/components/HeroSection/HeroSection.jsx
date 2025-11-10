@@ -43,7 +43,7 @@ const HeroSection = () => {
                   loop
                   muted
                   playsInline
-                  className="w-full h-[70vh] object-cover brightness-90"
+                  className="w-full h-[75vh] object-cover brightness-90"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>

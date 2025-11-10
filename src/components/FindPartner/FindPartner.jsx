@@ -13,8 +13,8 @@ const FindPartner = () => {
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/allpartners");
-        setPartners(res.data);
+        const result = await axios.get("http://localhost:3000/allpartners");
+        setPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
       }
