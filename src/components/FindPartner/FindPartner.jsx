@@ -4,19 +4,24 @@ import { FiSearch } from "react-icons/fi";
 import PartnerCard from "../PartnerCard/PartnerCard";
 import { IoIosArrowDown } from "react-icons/io";
 import Container from "../Container/Container";
+import Loading from "../Loading/Loading";
 
 const FindPartner = () => {
   const [partners, setPartners] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPartners = async () => {
       try {
+        setLoading(true)
         const result = await axios.get("http://localhost:3000/allpartners");
         setPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
+      }finally{
+        setLoading(false)
       }
     };
     fetchPartners();
@@ -60,7 +65,8 @@ const FindPartner = () => {
             </div>
           </div>
 
-          {sortedPartners.length > 0 ? (
+          { loading ? <Loading></Loading>
+          : sortedPartners.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {sortedPartners.map((partner) => (
                 <PartnerCard key={partner._id} partner={partner} />
