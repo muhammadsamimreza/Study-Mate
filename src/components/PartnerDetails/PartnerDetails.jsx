@@ -81,7 +81,7 @@ const PartnerDetails = () => {
       }
     });
   };
- if (loading) <Loading></Loading>
+ if (loading) return <Loading></Loading>
 
   if (!partner)
     return (

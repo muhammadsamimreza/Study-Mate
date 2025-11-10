@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthContext";
+import axios from "axios";
 
 const PartnerProfile = () => {
   const { user } = useContext(AuthContext);
@@ -22,20 +23,32 @@ const PartnerProfile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Normally, here you would send data to your backend or Firebase
-    console.log("Profile Created:", formData);
-
+    await axios.post("http://localhost:3000/allpartners", formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     Swal.fire({
       icon: "success",
       title: "Profile Created!",
       text: "Your study profile has been successfully created.",
     });
 
-    // Optional: reset form
-    // setFormData({ ...initial state });
+    setFormData({
+      name: user?.displayName || "",
+      profileimage: "",
+      subject: "",
+      studyMode: "Online",
+      availabilityTime: "",
+      location: "",
+      experienceLevel: "Beginner",
+      rating: 0,
+      patnerCount: 0,
+      email: user?.email || "",
+    });
   };
 
   return (
