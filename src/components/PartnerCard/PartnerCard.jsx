@@ -39,7 +39,7 @@ const PartnerCard = ({ partner }) => {
 
       {/* Button */}
       <Link
-        // to={`/partner/${partner._id}`}
+        to={`/PartnerDetails/${partner._id}`}
         className="mt-5 bg-linear-to-r from-amber-600 to-amber-400 text-white px-5 py-2 rounded-full font-medium shadow-md hover:shadow-lg hover:from-amber-400 hover:to-amber-600 transition-all duration-700 ease-in-out w-40 hover:w-full text-center"
       >
         View Profile

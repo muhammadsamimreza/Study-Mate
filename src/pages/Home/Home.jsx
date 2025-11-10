@@ -5,6 +5,7 @@ import Testimonials from '../../components/Testimonial/Testimonial';
 import PartnerCard from '../../components/PartnerCard/PartnerCard';
 import FindPartner from '../../components/FindPartner/FindPartner';
 import TopPartners from '../../components/TopPartners/TopPartners';
+import PartnerDetails from '../../components/PartnerDetails/PartnerDetails';
 
 const Home = () => {
     return (

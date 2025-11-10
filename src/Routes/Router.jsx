@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../Layout/Root";
-import Navbar from "../components/Navbar/Navbar";
 import Home from "../pages/Home/Home";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
@@ -10,6 +9,7 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import FindPartner from "../components/FindPartner/FindPartner";
 import PartnerProfile from "../pages/PartnerProfile/PartnerProfile";
 import MyConnection from "../pages/MyConnection/MyConnection";
+import PartnerDetails from "../components/PartnerDetails/PartnerDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         {
           path: "/find-partner",
           element: <FindPartner></FindPartner>
+        },
+        {
+          path: "/partnerDetails/:id",
+          element: <PartnerDetails></PartnerDetails>
         },
         {
           path: "/create-partner",
