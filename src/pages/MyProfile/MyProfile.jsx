@@ -10,7 +10,7 @@ const MyProfile = () => {
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [success, setSuccess] = useState("");
-
+  console.log(user.photoURL)
   const handleProfile = (event) => {
     event.preventDefault();
     updateProfile(user, {
@@ -38,7 +38,7 @@ const MyProfile = () => {
 
         {user?.photoURL ? (
           <img
-            src={user.photoURL}
+            src={user?.photoURL}
             alt="Profile"
             className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow"
           />

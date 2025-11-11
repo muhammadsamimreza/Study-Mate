@@ -73,8 +73,6 @@ const PartnerDetails = () => {
       if (result.isConfirmed) {
         try {
          
-          await axios.put(`http://localhost:3000/requests/${partner._id}`);
-
           const requestData = {
             partnerId: partner._id,
             name: partner.name,
@@ -91,10 +89,12 @@ const PartnerDetails = () => {
             requestDate: new Date().toISOString(),
           };
 
-        
           const res = await axios.post("http://localhost:3000/requests", requestData);
 
           if (res.status === 200 || res.status === 201) {
+
+            await axios.put(`http://localhost:3000/partners/${partner._id}/increment`);
+            
             Swal.fire({
               title: "Request Sent!",
               text: `Your request has been successfully sent to ${partner.name}.`,

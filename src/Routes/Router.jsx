@@ -8,13 +8,15 @@ import PrivateRoute from "../Provider/PrivateRoute";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import FindPartner from "../components/FindPartner/FindPartner";
 import PartnerProfile from "../pages/PartnerProfile/PartnerProfile";
-import MyConnection from "../pages/MyConnection/MyConnection";
 import PartnerDetails from "../components/PartnerDetails/PartnerDetails";
+import MyConnections from "../pages/MyConnections/MyConnections";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children:[
         {
             path: "/",
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/partnerDetails/:id",
-          element: <PartnerDetails></PartnerDetails>
+          element: <PrivateRoute><PartnerDetails></PartnerDetails></PrivateRoute>
         },
         {
           path: "/create-partner",
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/my-connection",
-          element: <MyConnection></MyConnection>
+          element: <PrivateRoute><MyConnections></MyConnections></PrivateRoute>
         },
         {
           path: "/login", 
