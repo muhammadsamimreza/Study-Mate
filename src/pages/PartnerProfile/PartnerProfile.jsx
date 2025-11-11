@@ -14,7 +14,7 @@ const PartnerProfile = () => {
     location: "",
     experienceLevel: "Beginner",
     rating: 0,
-    patnerCount: 0,
+    partnerCount: 0,
     email: user?.email || "",
   });
 
@@ -46,7 +46,7 @@ const PartnerProfile = () => {
       location: "",
       experienceLevel: "Beginner",
       rating: 0,
-      patnerCount: 0,
+      partnerCount: 0,
       email: user?.email || "",
     });
   };

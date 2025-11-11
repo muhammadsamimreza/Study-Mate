@@ -8,11 +8,14 @@ import {
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import { AuthContext } from "../../Provider/AuthContext";
+import { IoMdArrowBack } from "react-icons/io";
 
 const PartnerDetails = () => {
+  const { user } = use(AuthContext);
   const [partner, setPartners] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -44,12 +47,13 @@ const PartnerDetails = () => {
   //   location: "Rajshahi, Bangladesh",
   //   experienceLevel: "Advanced",
   //   rating: 5,
-  //   patnerCount: 0,
+  //   partnerCount: 0,
   //   email: "nusrat.jahan@example.com",
   // };
 
-  // SweetAlert2 handler
-  const handleRequest = () => {
+  
+  const handleRequest = async () => {
+    const senderEmail = user.email
     Swal.fire({
       title: "Send Request?",
       text: `Do you want to send a request to ${partner.name}?`,
@@ -65,19 +69,66 @@ const PartnerDetails = () => {
         confirmButton: "rounded-md font-semibold",
         cancelButton: "rounded-md font-semibold",
       },
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Request Sent! 🎉",
-          text: `Your request has been successfully sent to ${partner.name}.`,
-          icon: "success",
-          confirmButtonColor: "#14b8a6",
-          background: "#f9fafb",
-          customClass: {
-            popup: "rounded-2xl shadow-lg",
-            confirmButton: "rounded-md font-semibold",
-          },
-        });
+        try {
+         
+          await axios.put(`http://localhost:3000/requests/${partner._id}`);
+
+          const requestData = {
+            partnerId: partner._id,
+            name: partner.name,
+            profileimage: partner.profileimage,
+            subject: partner.subject,
+            studyMode: partner.studyMode,
+            availabilityTime: partner.availabilityTime,
+            location: partner.location,
+            experienceLevel: partner.experienceLevel,
+            rating: partner.rating,
+            partnerCount: partner.partnerCount + 1,
+            email: partner.email,
+            senderEmail,
+            requestDate: new Date().toISOString(),
+          };
+
+        
+          const res = await axios.post("http://localhost:3000/requests", requestData);
+
+          if (res.status === 200 || res.status === 201) {
+            Swal.fire({
+              title: "Request Sent!",
+              text: `Your request has been successfully sent to ${partner.name}.`,
+              icon: "success",
+              confirmButtonColor: "#14b8a6",
+              background: "#f9fafb",
+              customClass: {
+                popup: "rounded-2xl shadow-lg",
+                confirmButton: "rounded-md font-semibold",
+              },
+            });
+            setPartners((prev) => ({
+              ...prev,
+              partnerCount: prev.partnerCount + 1,
+            }));
+          }
+        } catch (error) {
+          console.error(error);
+          if (error.response?.status === 400) {
+            Swal.fire({
+              icon: "warning",
+              title: "Duplicate Request",
+              text: "You already sent a request to this partner!",
+              confirmButtonColor: "#14b8a6",
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong while sending the request.",
+              confirmButtonColor: "#14b8a6",
+            });
+          }
+        }
       }
     });
   };
@@ -175,7 +226,7 @@ const PartnerDetails = () => {
           <div className="mt-8 bg-teal-50 rounded-xl p-4 flex items-center justify-between shadow-inner">
             <div className="text-center flex-1">
               <p className="text-2xl font-bold text-teal-600">
-                {partner.patnerCount}
+                {partner.partnerCount}
               </p>
               <p className="text-gray-600 text-sm">Partners Found</p>
             </div>
@@ -192,9 +243,9 @@ const PartnerDetails = () => {
           <div className="flex justify-between items-center">
             <Link
               to="/find-partner"
-              className="mt-8 px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition duration-300"
+              className="flex items-center gap-1 mt-8 px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition duration-300"
             >
-              ← Back to List
+              <IoMdArrowBack />Back to List
             </Link>
           </div>
         </div>
