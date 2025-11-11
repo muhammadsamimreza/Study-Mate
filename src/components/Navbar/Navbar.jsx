@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import "./Navbar.css"
 import logo from "/logo.jpg";
@@ -12,17 +12,17 @@ import { FaPersonArrowDownToLine } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  // const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
 
-  // useEffect(() => {
-  //   const html = document.querySelector('html')
-  //    html.setAttribute("data-theme", theme)
-  //    localStorage.setItem("theme", theme)
-  // }, [theme])
+  useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
 
-  // const handleTheme = (checked) => {
-  //   setTheme(checked ? "dark": "light")
-  // }
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark": "light")
+  }
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-yellow-50 text-[#111827] shadow z-20 sticky top-0">
+    <div className="bg-base-100 text-base-content shadow z-20 sticky top-0">
       <Container>
         <div className="navbar">
           <div className="navbar-start">
@@ -203,6 +203,14 @@ const Navbar = () => {
                       <li>
                         <Link to="my-profile"> My Profile</Link>
                       </li>
+                      <input
+                        onChange={(e) => handleTheme(e.target.checked)}
+                        type="checkbox"
+                        defaultChecked={
+                          localStorage.getItem("theme") === "dark"
+                        }
+                        className="toggle"
+                      />
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>
@@ -222,14 +230,14 @@ const Navbar = () => {
                       <li>
                         <Link to="my-profile"> My Profile</Link>
                       </li>
-                      {/* <input
+                      <input
                         onChange={(e) => handleTheme(e.target.checked)}
                         type="checkbox"
                         defaultChecked={
                           localStorage.getItem("theme") === "dark"
                         }
                         className="toggle"
-                      /> */}
+                      />
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>
