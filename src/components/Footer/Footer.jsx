@@ -2,6 +2,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "/logo.jpg"
 import { Link } from "react-router";
 import Container from "../Container/Container";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -48,6 +49,9 @@ const Footer = () => {
             <div className="flex justify-center md:justify-start gap-5 text-amber-500 text-2xl">
               <a href="#">
                 <FaFacebookF className="hover:scale-110 transition-transform" />
+              </a>
+              <a href="#">
+                <FaXTwitter className="hover:scale-110 transition-transform" />
               </a>
               <a href="#">
                 <FaInstagram className="hover:scale-110 transition-transform" />
