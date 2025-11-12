@@ -81,14 +81,14 @@ const Navbar = () => {
   ${showNavbar ? "translate-y-0" : "-translate-y-full"}
   ${
     scrollDirection === "up"
-      ? "backdrop-blur-sm bg-linear-to-b from-black/50 to-transparent"
+      ? "backdrop-blur-sm bg-linear-to-b from-black/70 to-transparent"
       : ""
   }
   text-white
 `}
     >
       <Container>
-        <div className="navbar">
+        <nav className="navbar">
           <div className="navbar-start">
             <div className="dropdown">
               <div tabIndex={0} role="button" className="lg:hidden mr-2">
@@ -213,7 +213,7 @@ const Navbar = () => {
           <div className="navbar-end gap-3">
             {/* <div>{user && <h1> {user.displayName} </h1>}</div> */}
             <div className="flex items-center gap-5">
-              <div>
+              <div className="flex items-center justify-center bg-gray-400 border rounded-2xl">
                 <input
                   onChange={(e) => handleTheme(e.target.checked)}
                   type="checkbox"
@@ -233,7 +233,7 @@ const Navbar = () => {
                     </div>
                     <ul
                       tabIndex="-1"
-                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                      className="dropdown-content menu bg-base-100 text-gray-500 mt-2 rounded-box z-1 w-52 p-2 shadow-sm"
                     >
                       <li>
                         <Link to="my-profile"> My Profile</Link>
@@ -282,7 +282,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     to="/register"
-                    className="btn bg-amber-500 hover:bg-amber-600 text-white"
+                    className="btn hidden md:flex btn-outline text-white border-white hover:bg-amber-500"
                   >
                     {" "}
                     Register{" "}
@@ -291,7 +291,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
-        </div>
+        </nav>
       </Container>
     </div>
   );

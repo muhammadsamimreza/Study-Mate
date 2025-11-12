@@ -114,7 +114,7 @@ const MyConnections = () => {
     );
 
   return (
-    <div className="min-h-screen bg-base-200 py-10 px-4">
+    <div className="min-h-screen bg-base-200 py-10 px-4 mt-20">
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-100 dark:border-gray-700 transition-all">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
           My Connections

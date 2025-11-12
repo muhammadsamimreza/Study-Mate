@@ -64,20 +64,20 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen items-center justify-center mt-14">
       <title>studyMate-Register</title>
       <Container>
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-20 p-6 lg:p-10 ">
-          <div className="hidden md:flex lg:w-1/2 text-center lg:text-left">
+        <div className="z-10 flex flex-col md:flex-row items-center  justify-between gap-5 lg:gap-20 p-6 lg:p-10 ">
+          <div className="hidden md:flex md:w-1/2 text-center lg:text-left">
                       <img src={loginImage} alt="" />
                     </div>
 
-          <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow rounded-2xl p-8">
+          <div className="w-full md:w-1/2 max-w-md backdrop-blur-lg bg-base-200 dark:bg-white/10 border border-white/20 shadow-lg rounded-2xl p-8">
             <h2 className="text-2xl text-amber-600 font-bold mb-6 text-center">
               Register
             </h2>
 
-            <form onSubmit={handleRegister} className="space-y-4 text-gray-500">
+            <form onSubmit={handleRegister} className="space-y-4 text-base-500">
               {/* name */}
               <div>
                 <label className="block text-sm font-medium mb-2">Name</label>
@@ -86,7 +86,7 @@ const Register = () => {
                   name="name"
                   placeholder="Your name here.."
                   required
-                  className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  className="w-full text-xs  bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
               </div>
 
@@ -97,8 +97,8 @@ const Register = () => {
                   type="email"
                   name="email"
                   required
-                  placeholder="toytopia@email.com"
-                  className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  placeholder="studymate@email.com"
+                  className="w-full text-xs  bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
               </div>
               {/* photo URL  */}
@@ -111,7 +111,7 @@ const Register = () => {
                   name="photo"
                   required
                   placeholder="Photo URL here"
-                  className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  className="w-full text-xs  bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
               </div>
               {/* password */}
@@ -124,7 +124,7 @@ const Register = () => {
                   name="password"
                   required
                   placeholder="••••••••"
-                  className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  className="w-full text-xs  bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
                 <span
                   onClick={() => setShow(!show)}

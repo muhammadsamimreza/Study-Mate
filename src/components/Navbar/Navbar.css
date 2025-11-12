@@ -2,7 +2,7 @@
    background-color: #f59e0b;
    color: white;
 }
-ul li:hover{
+nav ul li:hover{
    background-color:#f5c77776;
    border-radius: 5px;
 }

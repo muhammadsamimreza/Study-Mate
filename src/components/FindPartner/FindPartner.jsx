@@ -41,7 +41,7 @@ const FindPartner = () => {
   });
 
   return (
-    <div className="bg-base-300 pb-10">
+    <div className="bg-base-200 pb-10 mt-20">
       <Container>
         <div>
           <div>

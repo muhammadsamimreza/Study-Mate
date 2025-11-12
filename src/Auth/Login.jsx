@@ -50,16 +50,16 @@ const Login = () => {
     setTempEmail(value); 
   };
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen items-center justify-center mt-14">
       <title>studyMate-Login</title>
       <Container>
-        <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-5 lg:gap-20 p-6 lg:p-10 ">
-          <div className="lg:w-1/2 shadow max-w-md backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-8">
+        <div className="relative w-full z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-5 lg:gap-20 p-6 lg:p-10 ">
+          <div className="md:w-1/2 shadow-lg max-w-md backdrop-blur-lg bg-base-200 dark:bg-white/10 border border-white/20 rounded-2xl p-8">
             <div className="mb-10">
               <h2 className="text-2xl text-amber-600 font-semibold text-center">Log In Your Account</h2>
               {/* <p className="text-xl text-center font-semibold">Get More Partners With Login</p> */}
             </div>
-            <form onSubmit={handleLogin} className="space-y-4 text-gray-500">
+            <form onSubmit={handleLogin} className="space-y-4 text-base-500">
               {/* Email */}
               <div>
                 <label className="block text-sm font-medium mb-2">Email</label>
@@ -69,7 +69,7 @@ const Login = () => {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="studymate@email.com"
-                  className="w-full text-xs  bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  className="w-full text-xs  bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
               </div>
               {/* password */}
@@ -83,7 +83,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full text-xs bg-gray-100 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
+                  className="w-full text-xs bg-gray-200 dark:bg-base-300 rounded-lg px-2 py-3 focus:ring-1 focus:ring-gray-400 outline-none"
                 />
                 <span
                   onClick={() => setShow(!show)}
@@ -157,7 +157,7 @@ const Login = () => {
             </button>
             </div>
           </div>
-          <div className="hidden md:flex lg:w-1/2 text-center lg:text-left">
+          <div className="hidden md:flex md:w-1/2 text-center lg:text-left">
             <img src={loginImage} alt="" />
           </div>
         </div>

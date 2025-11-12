@@ -52,7 +52,7 @@ const PartnerProfile = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto my-12 p-8 rounded-2xl shadow-lg bg-linear-to-br from-teal-50 via-white to-amber-50 border border-teal-100">
+    <div className="max-w-2xl mx-auto my-12 p-8 rounded-2xl shadow-lg bg-linear-to-br from-teal-50 via-white to-amber-50 border border-teal-100 mt-26">
       {/* Title */}
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
         Create Partner <span className="text-amber-500">Profile</span>

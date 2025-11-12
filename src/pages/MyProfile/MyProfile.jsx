@@ -31,7 +31,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-10">
+    <div className="flex flex-col items-center py-10 mt-14">
       <title>ToyTopia-My Profile</title>
       <div className="bg-amber-50 text-amber-600 p-8 rounded-2xl shadow-md w-[400px] text-center">
         <h2 className="text-2xl font-bold mb-5 text-amber-600">My Profile</h2>
