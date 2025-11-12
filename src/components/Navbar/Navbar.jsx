@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import "./Navbar.css";
 import logo from "/logo.png";
@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 import { RiTeamFill } from "react-icons/ri";
 import { BsPersonFillAdd } from "react-icons/bs";
 import { FaPersonArrowDownToLine } from "react-icons/fa6";
+import Loading from "../Loading/Loading";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, loading} = useContext(AuthContext);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -74,7 +75,7 @@ const Navbar = () => {
       }
     });
   };
-
+  if(loading) return <Loading></Loading>
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500
