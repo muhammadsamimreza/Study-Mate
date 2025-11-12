@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { AuthContext } from "../../Provider/AuthContext";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import Loading from "../../components/Loading/Loading";
 
 const MyConnections = () => {
   const { user } = use(AuthContext);
@@ -102,9 +103,7 @@ const MyConnections = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-[80vh] text-lg text-teal-600 font-semibold">
-        Loading your connections...
-      </div>
+      <Loading></Loading>
     );
 
   if (connections.length === 0)
@@ -116,49 +115,49 @@ const MyConnections = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-teal-50 to-white py-10 px-4">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-100 dark:border-gray-700 transition-all">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
           My Connections
         </h2>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-200 rounded-lg">
-            <thead className="bg-teal-500 text-white">
+        <div className="overflow-x-auto rounded-lg shadow-sm">
+          <table className="min-w-full border border-gray-200 dark:border-gray-700 rounded-lg text-sm sm:text-base">
+            <thead className="bg-teal-500 text-white text-left">
               <tr>
-                <th className="py-3 px-4 text-left">Partner</th>
-                <th className="py-3 px-4 text-left">Subject</th>
-                <th className="py-3 px-4 text-left">Study Mode</th>
-                <th className="py-3 px-4 text-center">Actions</th>
+                <th className="py-3 px-2 sm:px-4 ">Subject</th>
+                <th className="py-3 px-2 sm:px-4 ">Partner</th>
+                <th className="py-3 px-2 sm:px-4 ">Study Mode</th>
+                <th className="py-3 px-2 sm:px-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {connections.map((conn) => (
                 <tr
                   key={conn._id}
-                  className="border-b hover:bg-teal-50 transition-colors"
+                  className="border-b hover:bg-teal-50 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <td className="py-3 px-4 flex items-center space-x-3">
+                  <td className="py-3 px-2 sm:px-4 flex items-center gap-3 min-w-[140px]">
                     <img
                       src={conn.profileimage}
                       alt={conn.name}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-gray-200 dark:border-gray-700"
                     />
-                    <span className="font-semibold text-gray-800">
+                    <span className="font-semibold text-gray-800 dark:text-gray-100 truncate">
                       {conn.name}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-gray-700">{conn.subject}</td>
-                  <td className="py-3 px-4 text-gray-700">{conn.studyMode}</td>
-                  <td className="py-3 px-4 text-center">
+                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">{conn.subject}</td>
+                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">{conn.studyMode}</td>
+                  <td className="py-3 px-2 sm:px-4 text-center whitespace-nowrap">
                     <button
                       onClick={() => handleEdit(conn)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg mr-2 transition-all"
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-2 sm:px-3 py-1 rounded-lg mr-1 sm:mr-2 text-sm sm:text-base transition-all"
                     >
                       <FaEdit />
                     </button>
                     <button
                       onClick={() => handleDelete(conn._id)}
-                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition-all"
+                      className="bg-red-500 hover:bg-red-600 text-white px-2 sm:px-3 py-1 text-sm sm:text-base rounded-lg transition-all"
                     >
                       <FaTrash />
                     </button>
@@ -172,13 +171,13 @@ const MyConnections = () => {
         {/* Update Modal */}
         {editingId && (
           <div className="fixed inset-0 bg-black/70 bg-opacity-80 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-xl shadow-2xl w-96">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">
+            <div className="bg-white dark:bg-gray-900  p-5 sm:p-6 rounded-xl shadow-2xl w-full max-w-md">
+              <h3 className="font-bold text-gray-800 mb-4 text-lg sm:text-xl dark:text-gray-100 text-center">
                 Update Request
               </h3>
               <form onSubmit={handleUpdate} className="space-y-3">
                 <div>
-                  <label className="block text-gray-600 text-sm mb-1">
+                  <label className="block text-gray-600 dark:text-gray-300 text-sm mb-1">
                     Subject
                   </label>
                   <input
@@ -188,12 +187,12 @@ const MyConnections = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 dark:bg-gray-800 dark:text-gray-100"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-600 text-sm mb-1">
+                  <label className="block text-gray-600 dark:text-gray-300 text-sm mb-1">
                     Study Mode
                   </label>
                   <input
@@ -203,15 +202,15 @@ const MyConnections = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, studyMode: e.target.value })
                     }
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 dark:bg-gray-800 dark:text-gray-100"
                     required
                   />
                 </div>
-                <div className="flex justify-end space-x-2 mt-4">
+                <div className="flex flex-col sm:flex-row justify-end gap-3 mt-4">
                   <button
                     type="button"
                     onClick={() => setEditingId(null)}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-semibold"
+                    className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 rounded-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
                     Cancel
                   </button>
