@@ -1,5 +1,5 @@
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
-import logo from "/logo.jpg"
+import logo from "/logo.png"
 import { Link } from "react-router";
 import Container from "../Container/Container";
 import { FaXTwitter } from "react-icons/fa6";
@@ -10,8 +10,8 @@ const Footer = () => {
       <Container>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center text-center md:text-left">
           <div>
-            <Link to="/" className="flex gap-5 justify-center md:justify-start items-center text-3xl font-bold text-amber-500 mb-3">
-             <img className="w-8" src={logo} alt="" /> STUDY MATE
+            <Link to="/" className="flex gap-3 md:gap-5 justify-center md:justify-start items-center font-bold text-amber-500 mb-3">
+             <img className="w-7 md:w-10" src={logo} alt="" /> <span className="text-xl md:text-3xl">STUDY MATE</span>
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
               Your smart study companion — helping you stay organized,

@@ -7,13 +7,13 @@ import planImg3 from "../../assets/success2.png";
 
 const HowItWorks = () => {
   return (
-    <div className="bg-[#f9f9ff]">
+    <div className="bg-base-300">
       <Container>
         <section className="howItWorks">
-          <h2 className="howItWorks-title">
+          <h2 className="howItWorks-title dark:text-gray-300">
             How It <span className="text-amber-500">Works</span>
           </h2>
-          <p className="howItWorks-subtitle">
+          <p className="howItWorks-subtitle dark:text-gray-400">
             Study Mate empowers students through collaboration, structure, and
             motivation — making learning smoother and more engaging.
           </p>

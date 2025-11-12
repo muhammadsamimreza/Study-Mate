@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-import "./Navbar.css"
-import logo from "/logo.jpg";
+import "./Navbar.css";
+import logo from "/logo.png";
 import Container from "../Container/Container";
 import { AuthContext } from "../../Provider/AuthContext";
 import { FaRegUser, FaHome } from "react-icons/fa";
@@ -12,17 +12,17 @@ import { FaPersonArrowDownToLine } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
-    const html = document.querySelector('html')
-     html.setAttribute("data-theme", theme)
-     localStorage.setItem("theme", theme)
-  }, [theme])
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleTheme = (checked) => {
-    setTheme(checked ? "dark": "light")
-  }
+    setTheme(checked ? "dark" : "light");
+  };
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -60,14 +60,10 @@ const Navbar = () => {
         <div className="navbar">
           <div className="navbar-start">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
+              <div tabIndex={0} role="button" className="lg:hidden mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="w-5 h-5 md:h-6 md:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -131,9 +127,9 @@ const Navbar = () => {
                 </ul>
               )}
             </div>
-            <div className="flex items-center gap-5">
-              <img className="w-8" src={logo} alt="" />
-              <Link to="/" className="text-xl font-bold text-amber-600">
+            <div className="flex items-center gap-1 md:gap-0">
+              <img className="w-6 md:w-8" src={logo} alt="" />
+              <Link to="/" className="md:text-xl font-bold text-amber-600">
                 STUDY MATE
               </Link>
             </div>
@@ -185,7 +181,15 @@ const Navbar = () => {
           </div>
           <div className="navbar-end gap-3">
             {/* <div>{user && <h1> {user.displayName} </h1>}</div> */}
-            <div>
+            <div className="flex items-center gap-5">
+              <div>
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
+              </div>
               {user ? (
                 user?.photoURL ? (
                   <div className="dropdown dropdown-end">
@@ -203,14 +207,6 @@ const Navbar = () => {
                       <li>
                         <Link to="my-profile"> My Profile</Link>
                       </li>
-                      <input
-                        onChange={(e) => handleTheme(e.target.checked)}
-                        type="checkbox"
-                        defaultChecked={
-                          localStorage.getItem("theme") === "dark"
-                        }
-                        className="toggle"
-                      />
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>

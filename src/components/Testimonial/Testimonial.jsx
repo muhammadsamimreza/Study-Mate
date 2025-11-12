@@ -25,7 +25,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-base-200">
       <Container>
         <div className="">
           <h2 className="text-3xl font-bold text-center mb-12 text-amber-500">Testimonials</h2>
@@ -40,8 +40,8 @@ const Testimonials = () => {
                     <FaStar key={i} className="text-yellow-400 mr-1" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">"{review.feedback}"</p>
-                <h4 className="text-lg font-semibold">{review.name}</h4>
+                <p className="text-gray-800 mb-4">"{review.feedback}"</p>
+                <h4 className="text-lg dark:text-gray-800  font-semibold">{review.name}</h4>
               </div>
             ))}
           </div>

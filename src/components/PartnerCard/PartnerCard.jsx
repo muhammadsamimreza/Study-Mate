@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import logo from "/logo.jpg";
 
 const PartnerCard = ({ partner }) => {
   return (
@@ -10,7 +9,7 @@ const PartnerCard = ({ partner }) => {
       {/* Profile Image */}
       <div className="relative mb-4">
         <img
-          src={logo}
+          src={partner.profileimage}
           alt="Partner"
           className="w-24 h-24 rounded-full object-cover border-4 border-teal-500 shadow-md"
         />

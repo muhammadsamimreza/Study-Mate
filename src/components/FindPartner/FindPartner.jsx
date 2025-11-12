@@ -41,7 +41,7 @@ const FindPartner = () => {
   });
 
   return (
-    <div className="bg-[#f9f9ff] pb-10">
+    <div className="bg-base-300 pb-10">
       <Container>
         <div>
           <div>
@@ -55,19 +55,19 @@ const FindPartner = () => {
               className="flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
             >
               <IoIosArrowDown
-                className={`transition-transform ${
+                className={`text-gray-500 dark:text-gray-800 transition-transform ${
                   sortOrder === "asc" ? "rotate-180" : ""
                 }`}
                 size={18}
               />
-              Sort by Experience ({sortOrder === "asc" ? "↑" : "↓"})
+              <span className="text-gray-500 dark:text-gray-800">Sort by Experience ({sortOrder === "asc" ? "↑" : "↓"})</span>
             </button>
             <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
-              <FiSearch size={18} className="text-gray-500" />
+              <FiSearch size={18} className="text-gray-500 dark:text-gray-800" />
               <input
                 type="text"
                 placeholder="Search partners..."
-                className="ml-2 outline-none bg-transparent"
+                className="ml-2 text-gray-500 dark:text-gray-800 outline-none bg-transparent"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
