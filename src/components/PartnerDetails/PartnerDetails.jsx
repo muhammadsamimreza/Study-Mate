@@ -141,7 +141,7 @@ const PartnerDetails = () => {
       </div>
     );
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-100 via-teal-50 to-teal-100 py-10 px-4 flex items-center justify-center">
+    <div className="min-h-screen bg-linear-to-br from-blue-100 via-teal-50 to-teal-100 py-10 px-4 flex items-center justify-center mt-14">
       <div className="max-w-3xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-teal-200/70">
         {/* Header Section */}
         <div className="relative">
