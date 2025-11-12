@@ -9,19 +9,19 @@ import Loading from "../Loading/Loading";
 const FindPartner = () => {
   const [partners, setPartners] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortAsc, setSortAsc] = useState(true);
-  const [loading, setLoading] = useState(true)
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
         const result = await axios.get("http://localhost:3000/allpartners");
         setPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
     fetchPartners();
@@ -29,13 +29,16 @@ const FindPartner = () => {
 
   // Search filter
   const filteredPartners = partners.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    p.subject?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sorting
-  const sortedPartners = [...filteredPartners].sort((a, b) =>
-    sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-  );
+  // Sorting Advanced
+  const experienceOrder = ["Beginner", "Intermediate", "Advanced"];
+  const sortedPartners = [...filteredPartners].sort((a, b) => {
+    const aIndex = experienceOrder.indexOf(a.experienceLevel);
+    const bIndex = experienceOrder.indexOf(b.experienceLevel);
+    return sortOrder === "asc" ? aIndex - bIndex : bIndex - aIndex;
+  });
 
   return (
     <div className="bg-[#f9f9ff] pb-10">
@@ -46,13 +49,18 @@ const FindPartner = () => {
               All <span className="text-amber-500">Partner</span>
             </h2>
           </div>
-          <div className="flex justify-between items-center mb-10">
+          <div className="flex justify-between items-center mb-10 flex-col md:flex-row gap-4">
             <button
-              onClick={() => setSortAsc(!sortAsc)}
+              onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
               className="flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
             >
-              <IoIosArrowDown size={18} />
-              Sort
+              <IoIosArrowDown
+                className={`transition-transform ${
+                  sortOrder === "asc" ? "rotate-180" : ""
+                }`}
+                size={18}
+              />
+              Sort by Experience ({sortOrder === "asc" ? "↑" : "↓"})
             </button>
             <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
               <FiSearch size={18} className="text-gray-500" />
@@ -65,8 +73,9 @@ const FindPartner = () => {
             </div>
           </div>
 
-          { loading ? <Loading></Loading>
-          : sortedPartners.length > 0 ? (
+          {loading ? (
+            <Loading></Loading>
+          ) : sortedPartners.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {sortedPartners.map((partner) => (
                 <PartnerCard key={partner._id} partner={partner} />
@@ -74,7 +83,7 @@ const FindPartner = () => {
             </div>
           ) : (
             <p className="text-center text-gray-600 mt-10">
-              No partners found.
+              No partners matching your search.
             </p>
           )}
         </div>
