@@ -12,6 +12,9 @@ import { FaPersonArrowDownToLine } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(null);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -19,6 +22,24 @@ const Navbar = () => {
     html.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down
+        setShowNavbar(false);
+        setScrollDirection("down");
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+        setScrollDirection("up");
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
@@ -55,7 +76,17 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 text-base-content shadow z-20 sticky top-0">
+    <div
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500
+  ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+  ${
+    scrollDirection === "up"
+      ? "backdrop-blur-sm bg-linear-to-b from-black/50 to-transparent"
+      : ""
+  }
+  text-white
+`}
+    >
       <Container>
         <div className="navbar">
           <div className="navbar-start">
