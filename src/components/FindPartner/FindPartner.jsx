@@ -16,7 +16,9 @@ const FindPartner = () => {
     const fetchPartners = async () => {
       try {
         setLoading(true);
-        const result = await axios.get("http://localhost:3000/allpartners");
+        const result = await axios.get(
+          "https://study-mate-server-flame.vercel.app/allpartners"
+        );
         setPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
@@ -61,10 +63,15 @@ const FindPartner = () => {
                 }`}
                 size={18}
               />
-              <span className="text-gray-500 dark:text-gray-800">Sort by Experience ({sortOrder === "asc" ? "↑" : "↓"})</span>
+              <span className="text-gray-500 dark:text-gray-800">
+                Sort by Experience ({sortOrder === "asc" ? "↑" : "↓"})
+              </span>
             </button>
             <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
-              <FiSearch size={18} className="text-gray-500 dark:text-gray-800" />
+              <FiSearch
+                size={18}
+                className="text-gray-500 dark:text-gray-800"
+              />
               <input
                 type="text"
                 placeholder="Search partners..."

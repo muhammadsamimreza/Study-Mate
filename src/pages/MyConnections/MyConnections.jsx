@@ -20,7 +20,7 @@ const MyConnections = () => {
         try {
           setLoading(true);
           const res = await axios.get(
-            `http://localhost:3000/requests?senderEmail=${user.email}`
+            `https://study-mate-server-flame.vercel.app/requests?senderEmail=${user.email}`
           );
           setConnections(res.data);
         } catch (error) {
@@ -32,7 +32,6 @@ const MyConnections = () => {
       fetchConnections();
     }
   }, [user?.email]);
-
 
   // Delete Request
   const handleDelete = async (id) => {
@@ -48,7 +47,9 @@ const MyConnections = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:3000/requests/${id}`);
+          await axios.delete(
+            `https://study-mate-server-flame.vercel.app/requests/${id}`
+          );
           setConnections(connections.filter((conn) => conn._id !== id));
           Swal.fire("Deleted!", "Your request has been removed.", "success");
         } catch (err) {
@@ -72,7 +73,7 @@ const MyConnections = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:3000/requests/${editingId}`,
+        `https://study-mate-server-flame.vercel.app/requests/${editingId}`,
         formData
       );
       if (res.status === 200) {
@@ -101,10 +102,7 @@ const MyConnections = () => {
     }
   };
 
-  if (loading)
-    return (
-      <Loading></Loading>
-    );
+  if (loading) return <Loading></Loading>;
 
   if (connections.length === 0)
     return (
@@ -147,8 +145,12 @@ const MyConnections = () => {
                       {conn.name}
                     </span>
                   </td>
-                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">{conn.subject}</td>
-                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">{conn.studyMode}</td>
+                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">
+                    {conn.subject}
+                  </td>
+                  <td className="py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300">
+                    {conn.studyMode}
+                  </td>
                   <td className="py-3 px-2 sm:px-4 text-center whitespace-nowrap">
                     <button
                       onClick={() => handleEdit(conn)}

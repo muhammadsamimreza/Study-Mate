@@ -24,7 +24,9 @@ const PartnerDetails = () => {
     const fetchPartners = async () => {
       try {
         setLoading(true);
-        const result = await axios.get(`http://localhost:3000/partnerDetails/${id}`);
+        const result = await axios.get(
+          `https://study-mate-server-flame.vercel.app/partnerDetails/${id}`
+        );
         setPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
@@ -35,7 +37,7 @@ const PartnerDetails = () => {
     fetchPartners();
   }, [id]);
 
-//  console.log(partner)
+  //  console.log(partner)
   // const partner = {
   //   _id: "6911a7fc04689e6e88fd76ad",
   //   id: "3",
@@ -51,9 +53,8 @@ const PartnerDetails = () => {
   //   email: "nusrat.jahan@example.com",
   // };
 
-  
   const handleRequest = async () => {
-    const senderEmail = user.email
+    const senderEmail = user.email;
     Swal.fire({
       title: "Send Request?",
       text: `Do you want to send a request to ${partner.name}?`,
@@ -72,7 +73,6 @@ const PartnerDetails = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-         
           const requestData = {
             partnerId: partner._id,
             name: partner.name,
@@ -89,12 +89,16 @@ const PartnerDetails = () => {
             requestDate: new Date().toISOString(),
           };
 
-          const res = await axios.post("http://localhost:3000/requests", requestData);
+          const res = await axios.post(
+            "https://study-mate-server-flame.vercel.app/requests",
+            requestData
+          );
 
           if (res.status === 200 || res.status === 201) {
+            await axios.put(
+              `https://study-mate-server-flame.vercel.app/partners/${partner._id}/increment`
+            );
 
-            await axios.put(`http://localhost:3000/partners/${partner._id}/increment`);
-            
             Swal.fire({
               title: "Request Sent!",
               text: `Your request has been successfully sent to ${partner.name}.`,
@@ -132,7 +136,7 @@ const PartnerDetails = () => {
       }
     });
   };
- if (loading) return <Loading></Loading>
+  if (loading) return <Loading></Loading>;
 
   if (!partner)
     return (
@@ -246,7 +250,8 @@ const PartnerDetails = () => {
               to="/find-partner"
               className="flex items-center gap-1 mt-8 px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition duration-300"
             >
-              <IoMdArrowBack />Back to List
+              <IoMdArrowBack />
+              Back to List
             </Link>
           </div>
         </div>

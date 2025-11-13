@@ -26,11 +26,15 @@ const PartnerProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:3000/allpartners", formData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await axios.post(
+      "https://study-mate-server-flame.vercel.app/allpartners",
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     Swal.fire({
       icon: "success",
       title: "Profile Created!",

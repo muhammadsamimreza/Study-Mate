@@ -8,18 +8,20 @@ import { AuthContext } from "../../Provider/AuthContext";
 import Loading from "../Loading/Loading";
 
 const TopPartners = () => {
-  const {loading, setLoading}= useContext(AuthContext)
+  const { loading, setLoading } = useContext(AuthContext);
   const [topStudyPartners, setTopStudyPartners] = useState([]);
   useEffect(() => {
     const topPartners = async () => {
       try {
-        setLoading(true)
-        const result = await axios.get("http://localhost:3000/top-partners");
+        setLoading(true);
+        const result = await axios.get(
+          "https://study-mate-server-flame.vercel.app/top-partners"
+        );
         setTopStudyPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
     topPartners();
@@ -33,19 +35,22 @@ const TopPartners = () => {
             Top Study <span className="text-amber-500">Partner</span>
           </h2>
         </div>
-          {loading? (
-            <Loading></Loading>)
-          : (<div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {loading ? (
+          <Loading></Loading>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {topStudyPartners.map((partner) => (
-            <PartnerCard key={partner._id} partner={partner} />
-          ))}
-          </div>)}
+              <PartnerCard key={partner._id} partner={partner} />
+            ))}
+          </div>
+        )}
         <div className="text-center mt-10">
-            <Link to="/find-partner"
+          <Link
+            to="/find-partner"
             className="btn btn-outline btn-warning animate-bounce hover:text-white hover:rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-700 ease-in-out w-40 hover:w-60 text-center"
-            >
+          >
             Find More <FaAngleDown />
-            </Link>
+          </Link>
         </div>
       </Container>
     </div>
