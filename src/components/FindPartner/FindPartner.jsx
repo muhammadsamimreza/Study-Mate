@@ -42,6 +42,7 @@ const FindPartner = () => {
 
   return (
     <div className="bg-base-200 pb-10 mt-14">
+      <title>studyMate-AllPartner</title>
       <Container>
         <div>
           <div>

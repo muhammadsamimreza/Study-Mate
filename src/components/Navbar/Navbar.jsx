@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import "./Navbar.css";
 import logo from "/logo.png";
 import Container from "../Container/Container";
@@ -17,7 +17,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState(null);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
+  const navigate = useNavigate()
   useEffect(() => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
@@ -56,12 +56,13 @@ const Navbar = () => {
       confirmButtonText: "Yes, log out!",
     }).then((result) => {
       if (result.isConfirmed) {
-        logOut()
+        logOut(navigate)
           .then(() => {
             Swal.fire({
               title: "Logged out!",
               text: "You have been successfully logged out.",
               icon: "success",
+              
             });
           })
           .catch((error) => {
@@ -82,8 +83,8 @@ const Navbar = () => {
   ${showNavbar ? "translate-y-0" : "-translate-y-full"}
   ${
     scrollDirection === "up"
-      ? "backdrop-blur-sm bg-linear-to-b from-black/70 to-transparent"
-      : ""
+      ? "backdrop-blur-2xl bg-gray-300 to-transparent"
+      : "bg-gray-300"
   }
   text-white
 `}
@@ -112,7 +113,7 @@ const Navbar = () => {
               {user ? (
                 <ul
                   tabIndex="-1"
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 text-black dark:text-white rounded-box z-1 mt-3 w-52 p-2 shadow"
                 >
                   <li>
                     <NavLink to="/">
@@ -142,7 +143,7 @@ const Navbar = () => {
               ) : (
                 <ul
                   tabIndex="-1"
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-1 mt-3 w-52 p-2 shadow"
                 >
                   <li>
                     <NavLink to="/">
@@ -168,7 +169,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             {user ? (
-              <ul className="menu gap-2 menu-horizontal px-1">
+              <ul className="menu gap-2 menu-horizontal text-black px-1">
                 <li>
                   <NavLink to="/">
                     {" "}
@@ -195,7 +196,7 @@ const Navbar = () => {
                 </li>
               </ul>
             ) : (
-              <ul className="menu gap-2 menu-horizontal px-1">
+              <ul className="menu gap-2 menu-horizontal text-black px-1">
                 <li>
                   <NavLink to="/">
                     <FaHome></FaHome>
@@ -234,7 +235,7 @@ const Navbar = () => {
                     </div>
                     <ul
                       tabIndex="-1"
-                      className="dropdown-content menu bg-base-100 text-gray-500 mt-2 rounded-box z-1 w-52 p-2 shadow-sm"
+                      className="dropdown-content menu bg-base-100 text-black dark:text-white mt-2 rounded-box z-1 w-52 p-2 shadow-sm"
                     >
                       <li>
                         <Link to="my-profile"> My Profile</Link>
@@ -253,19 +254,11 @@ const Navbar = () => {
                     </div>
                     <ul
                       tabIndex="-1"
-                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                      className="dropdown-content menu bg-base-100 text-black dark:text-white rounded-box z-1 w-52 p-2 shadow-sm"
                     >
                       <li>
                         <Link to="my-profile"> My Profile</Link>
                       </li>
-                      <input
-                        onChange={(e) => handleTheme(e.target.checked)}
-                        type="checkbox"
-                        defaultChecked={
-                          localStorage.getItem("theme") === "dark"
-                        }
-                        className="toggle"
-                      />
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>
@@ -283,7 +276,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     to="/register"
-                    className="btn hidden md:flex btn-outline text-white border-white hover:bg-amber-500"
+                    className="btn hidden md:flex btn-outline text-black hover:text-white border-white hover:bg-amber-500"
                   >
                     {" "}
                     Register{" "}

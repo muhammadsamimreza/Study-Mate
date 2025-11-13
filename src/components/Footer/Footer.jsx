@@ -6,21 +6,21 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-yellow-50 text-gray-800 py-10 px-6  shadow-inner">
+    <footer className="bg-base-300 text-gray-800 dark:text-white/70 py-10 px-6  shadow-inner">
       <Container>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center text-center md:text-left">
           <div>
             <Link to="/" className="flex gap-3 md:gap-5 justify-center md:justify-start items-center font-bold text-amber-500 mb-3">
              <img className="w-7 md:w-10" src={logo} alt="" /> <span className="text-xl md:text-3xl">STUDY MATE</span>
             </Link>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-gray-600 dark:text-white/70 leading-relaxed">
               Your smart study companion — helping you stay organized,
               motivated, and connected while learning.
             </p>
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-700">
+            <h3 className="text-xl font-semibold mb-3 text-gray-700 dark:text-white/80">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-700">
+            <h3 className="text-xl font-semibold mb-3 text-gray-700 dark:text-white/80">
               Follow Us
             </h3>
             <div className="flex justify-center md:justify-start gap-5 text-amber-500 text-2xl">

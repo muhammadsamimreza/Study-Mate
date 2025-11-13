@@ -24,7 +24,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         toast.success("Successfully Login");
-        navigate(`${location.pathname ? location.pathname : "/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         toast.warn(err.message);
@@ -36,7 +36,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         toast.success("Successfully Login");
-        navigate(`${location.pathname ? location.pathname : "/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         console.error("Google Login Error:", err);
