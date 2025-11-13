@@ -123,8 +123,8 @@ const MyConnections = () => {
           <table className="min-w-full border border-gray-200 dark:border-gray-700 rounded-lg text-sm sm:text-base">
             <thead className="bg-teal-500 text-white text-left">
               <tr>
-                <th className="py-3 px-2 sm:px-4 ">Subject</th>
                 <th className="py-3 px-2 sm:px-4 ">Partner</th>
+                <th className="py-3 px-2 sm:px-4 ">Subject</th>
                 <th className="py-3 px-2 sm:px-4 ">Study Mode</th>
                 <th className="py-3 px-2 sm:px-4 text-center">Actions</th>
               </tr>
