@@ -1,23 +1,29 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "../Container/Container";
 import PartnerCard from "../PartnerCard/PartnerCard";
 import { Link } from "react-router";
 import { FaAngleDown } from "react-icons/fa";
+import { AuthContext } from "../../Provider/AuthContext";
+import Loading from "../Loading/Loading";
 
 const TopPartners = () => {
+  const {loading, setLoading}= useContext(AuthContext)
   const [topStudyPartners, setTopStudyPartners] = useState([]);
   useEffect(() => {
     const topPartners = async () => {
       try {
+        setLoading(true)
         const result = await axios.get("http://localhost:3000/top-partners");
         setTopStudyPartners(result.data);
       } catch (err) {
         console.error("Error fetching partners:", err);
+      }finally{
+        setLoading(false)
       }
     };
     topPartners();
-  }, []);
+  }, [setLoading]);
 
   return (
     <div className="pt-20 pb-10">
@@ -28,7 +34,8 @@ const TopPartners = () => {
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {topStudyPartners.map((partner) => (
+          {loading? <Loading></Loading>
+          :topStudyPartners.map((partner) => (
             <PartnerCard key={partner._id} partner={partner} />
           ))}
         </div>

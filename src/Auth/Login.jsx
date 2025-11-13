@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
@@ -6,11 +6,10 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthContext";
 import Container from "../components/Container/Container";
 import loginImage from "../assets/loginImage.jpg";
-import { IoMdLogIn } from "react-icons/io";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const { signIn, setUser,signInGoogle,setTempEmail} = use(AuthContext);
+  const { signIn, setUser,signInGoogle,setTempEmail} = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -25,7 +24,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         toast.success("Successfully Login");
-        navigate(`${location.state ? location.state : "/"}`);
+        navigate(`${location.pathname ? location.pathname : "/"}`);
       })
       .catch((err) => {
         toast.warn(err.message);
@@ -37,7 +36,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         toast.success("Successfully Login");
-        navigate("/");
+        navigate(`${location.pathname ? location.pathname : "/"}`);
       })
       .catch((err) => {
         console.error("Google Login Error:", err);
