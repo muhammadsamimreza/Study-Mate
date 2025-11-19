@@ -28,6 +28,69 @@
 - **HostingClient:** Netlify  
 
 ---
+### **Frontend**
+```bash
+npm install react react-dom react-router-dom tailwindcss daisyui react-icons axios
+
+Backend
+npm install express mongoose cors dotenv
+
+Authentication
+npm install firebase
+
+Development Tools
+npm install -D nodemon
+
+🚀 Running the Project Locally
+1️⃣ Clone the Repository
+git clone <your-repo-url>
+
+2️⃣ Navigate to Project Folder
+cd your-project-folder
+
+3️⃣ Install Dependencies
+
+For client:
+
+cd client
+npm install
+
+
+For server:
+
+cd server
+npm install
+
+4️⃣ Setup Environment Variables
+
+Client (.env):
+
+VITE_API_URL=http://localhost:5000
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+
+
+Server (.env):
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+
+5️⃣ Start the Development Server
+
+Run server:
+
+cd server
+npm run dev
+
+
+Run client:
+
+cd client
+npm run dev
+
+6️⃣ Open in Browser
+http://localhost:5173
+
 
 ## 👨‍💻 Developer
 **Developed by:** [Md. Samim Reza](https://github.com/muhammadsamimreza)
